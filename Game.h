@@ -3,37 +3,24 @@
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
-
-#include "Times.h"
-#include "Texts.h"
-#include "Images.h"
-#include "Randomize.h"
 #include "GOL.h"
-#include "Sprites.h"
+#include "SpaceRocks.h"
 
 class Game {
 
 private:
 
-	unsigned int width;
-	unsigned int height;
+	sf::Vector2f windowSize;
 	std::string title;
 	sf::VideoMode vm;
 	sf::RenderWindow *window;
 
-	Times times;
-	Texts *texts;
-	Images *images;
-	Randomize *randomize;
 	GOL *gol;
-	Sprites *sprites;
+	SpaceRocks *spaceRocks;
 
 	void initWindow();
-	void initTexts();
-	void initImages();
-	void initRandomize();
 	void initGOL();
-	void initSprites();
+	void initSpaceRocks();
 
 	void pollEvents();
 
