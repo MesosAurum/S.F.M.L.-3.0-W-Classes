@@ -27,11 +27,16 @@ void SpaceRocks::update(sf::Vector2f window_size) {
 	dt = times.getDeltaTime();
 
 	ship.update(dt, window_size);
+	pellets.firePellet(ship.getRotation(), ship.getPosition());
+	pellets.update(dt, window_size);
+	rocks.update(dt, window_size);
 
 	scoreText->streamText("Score: ", score);
 }
 void SpaceRocks::render(sf::RenderWindow &window) {
 
 	window.draw(*scoreText);
+	pellets.render(window);
 	ship.render(window);
+	rocks.render(window);
 }
