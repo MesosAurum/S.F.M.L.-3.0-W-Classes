@@ -30,6 +30,6 @@ public:
 	Rocks();
 	~Rocks();
 
-	void update(float dt, sf::Vector2f window_size);
+	void update(float dt, sf::Vector2f window_size, Entity &ship, Pellets &pellets, std::uint16_t &score, int &health);
 	void render(sf::RenderWindow &window);
 };
