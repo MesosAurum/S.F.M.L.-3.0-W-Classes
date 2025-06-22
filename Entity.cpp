@@ -112,10 +112,10 @@ sf::FloatRect Entity::getLocalBounds() {
 
 	return vertArray.getBounds();
 }
-sf::FloatRect Entity::getGlobaBounds() {
+sf::FloatRect Entity::getGlobalBounds() {
 
 	sf::FloatRect globalBounds = getLocalBounds();
-	globalBounds.position = { 0,0 };
+	globalBounds.position = this->getPosition();
 	return globalBounds;
 }
 void Entity::updateEntity(float dt, sf::Vector2f window_size) {
