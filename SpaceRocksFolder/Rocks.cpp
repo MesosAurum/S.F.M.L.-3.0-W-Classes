@@ -63,7 +63,7 @@ Rocks::~Rocks() {
 		deleteRock(i);
 	}
 }
-void Rocks::update(float dt, sf::Vector2f window_size) {
+void Rocks::update(float dt, sf::Vector2f window_size, Entity &ship, Pellets &pellets, std::uint16_t &score, int &health) {
 
 	rockTimer -= dt;
 
@@ -90,6 +90,33 @@ void Rocks::update(float dt, sf::Vector2f window_size) {
 	for(unsigned int i = 0; i < rocks.size(); ++i) {
 
 		rocks.at(i)->updateEntity(dt, window_size);
+
+		if(ship.getGlobalBounds().findIntersection(rocks.at(i)->getGlobalBounds())) {
+
+			health -= rocks.at(i)->getEntitySize().x;
+			deleteRock(i);
+			break;
+		}
+		for(unsigned int j = 0; j < pellets.getPellets().size(); ++j) {
+		
+			if(pellets.getPellets().at(j)->getGlobalBounds().findIntersection(rocks.at(i)->getGlobalBounds())) {
+		
+				score += 16;
+		
+				delete pellets.getPellets().at(j);
+				pellets.getPellets().erase(pellets.getPellets().begin() + j);
+		
+				if(rocks.at(i)->getEntitySize().x < 10.0f) {
+		
+					deleteRock(i);
+					break;
+				}
+				rocks.at(i)->setEntitySize(rocks.at(i)->getEntitySize() / 2.0f);
+				spawnRock(rocks.at(i)->getPosition(), rocks.at(i)->getEntitySize(), window_size);
+				rocks.at(rocks.size() - 1)->setColor(rocks.at(i)->getColor());
+				break;
+			}
+		}
 	}
 }
 void Rocks::render(sf::RenderWindow &window) {
