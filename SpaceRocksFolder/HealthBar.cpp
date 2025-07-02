@@ -13,7 +13,7 @@ HealthBar::HealthBar(int health, sf::Vector2f window_size) {
 	healthSize.y = window_size.y / 20.0f;
 
 	this->setFillColor(sf::Color::Red);
-	this->setSize({ float(health), healthSize.y });
+	this->setSize({ float(health) * healthSizeX, healthSize.y });
 	this->setOrigin(this->getGeometricCenter());
 	this->setPosition({ window_size.x / 2.0f, healthSize.y });
 
