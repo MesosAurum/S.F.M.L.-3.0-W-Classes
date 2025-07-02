@@ -22,7 +22,7 @@ Pellets::Pellets() {
 }
 Pellets::~Pellets() {
 
-	for(unsigned int i = 0; i < pellets.size(); ++i) {
+	for(int i = pellets.size() - 1; i >= 0; --i) {
 
 		delete pellets.at(i);
 		pellets.erase(pellets.begin() + i);
@@ -55,7 +55,7 @@ std::vector<Entity *> &Pellets::getPellets() {
 void Pellets::update(float dt, sf::Vector2f window_size) {
 
 	pelletTimer -= dt;
-	for(unsigned int i = 0; i < pellets.size(); ++i) {
+	for(int i = pellets.size() - 1; i >= 0; --i) {
 
 		pellets.at(i)->updateEntity(dt, window_size);
 		pellets.at(i)->animate(dt);
