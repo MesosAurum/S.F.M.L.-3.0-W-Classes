@@ -11,9 +11,28 @@ private:
 	sf::Vector2u frameSize;
 	void initTexture(std::string address);
 
+	sf::Vector2i texCoord;
+
+	float frameTimer;
+	float frameTimerMax;
+
+	void initTimers();
+
 public:
 
 	Textures(std::string address, sf::Vector2u size);
 	~Textures();
+
+	void frameRight();
+	void frameLeft();
+
+	float getFrameTimer() const;
+	void setFrameTimer(float frame_time);
+
+	float getFrameTimerMax() const;
+	void setFrameTimerMax(float frame_time);
+
+	sf::Vector2i getTexCoord() const;
+
 	sf::Vector2u getFrameSize() const;
 };
