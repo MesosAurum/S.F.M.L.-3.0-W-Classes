@@ -14,7 +14,7 @@ void Sounds::initRandomize() {
 	randomize = new Randomize();
 }
 sf::SoundBuffer *Sounds::initBuffer(std::string address) {
-	
+
 	soundBuffer = new sf::SoundBuffer();
 	if(!soundBuffer->loadFromFile(address)) {
 
@@ -77,12 +77,12 @@ void Sounds::generateSound() {
 		std::cerr << "SOUNDS::GENERATESOUND::ERROR COULD NOT LOAD FROM BUFFER!!!" << std::endl;
 	}
 }
-Sounds::Sounds(std::string buffer_address) : sf::Sound(*initBuffer(buffer_address)) {
+Sounds::Sounds(std::string buffer_address): sf::Sound(*initBuffer(buffer_address)) {
 
 	initFrequencyTable();
 	initRandomize();
 }
-Sounds::Sounds(std::vector<sf::Vector3i> note, unsigned int waveform, float amplitude, unsigned short bpm) : sf::Sound(*initBuffer("Audio/CNote.wav")) {
+Sounds::Sounds(std::vector<sf::Vector3i> note, unsigned int waveform, float amplitude, unsigned short bpm): sf::Sound(*initBuffer("Audio/CNote.wav")) {
 
 	initFrequencyTable();
 
@@ -112,15 +112,19 @@ void Sounds::setWaveForm(unsigned short type) {
 	switch(type) {
 
 	case 0:
+		//A * sin(2 * pi * f * t)
 		wave = Sine;
 		break;
 	case 1:
+		//A * sgn(sin(2 * pi * f * t)
 		wave = Square;
 		break;
 	case 2:
+		//A * (2 / pi) * sin^-1(sin(2 * pi * f * t)
 		wave = Triangle;
 		break;
 	case 3:
+		//A * 2 * (f * t - floor((1 / 2) + f * t))
 		wave = Sawtooth;
 		break;
 	default:
