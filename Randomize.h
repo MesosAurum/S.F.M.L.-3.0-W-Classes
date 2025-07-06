@@ -1,6 +1,6 @@
 #pragma once
 #include <random>
-#include "times.h"
+#include "Times.h"
 
 class Randomize {
 
