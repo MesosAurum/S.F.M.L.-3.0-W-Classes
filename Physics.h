@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-class Physics {
+class Physics : public sf::Transformable {
 
 private:
 
@@ -11,16 +11,14 @@ private:
 	float mass;
 	sf::Vector2f radii;
 
-	sf::Vector2f position;
 	sf::Vector2f velocity;
 	sf::Vector2f acceleration;
 	sf::Vector2f force;
 
-	float rotation;
 	float angVelocity;
 	float angAcceleration;
 	float torque;
-	float momentIntertia;
+	float momentInertia;
 
 	float friction;
 	float angFriction;
@@ -37,23 +35,16 @@ public:
 
 	void setMass(float mass);
 
-	sf::Vector2f getPosition() const;
-	void setPosition(sf::Vector2f position);
-
 	void setVelocity(sf::Vector2f velocity);
 
 	void addForce(sf::Vector2f force);
-
-	float getRotation() const;
-	void setRotation(float theta);
-	void addRotation(float theta);
 
 	float getAngVelocity() const;
 	void setAngVelocity(float angular_velocity);
 
 	void addTorque(float torque);
 
-	void setMomentOfIntertia(sf::Vector2f size);
+	void setMomentOfInertia(sf::Vector2f size);
 
 	sf::Vector2f getRadii() const;
 	void setRadii(sf::Vector2f radii);
