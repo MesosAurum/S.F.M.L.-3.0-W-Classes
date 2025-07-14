@@ -11,12 +11,8 @@ private:
 
 	sf::VertexArray vertArray;
 
-	sf::Vector2f entitySize;
 	sf::Vector2f origin;
 	sf::Vector2f texSize;
-
-	void tranlateEntity();
-	void rotate();
 
 public:
 
@@ -31,15 +27,16 @@ public:
 
 	void setFrameTimerMax(float time);
 
-	sf::Vector2f getEntitySize() const;
-	void setEntitySize(sf::Vector2f size);
-
-	sf::Vector2f getOrigin();
+	sf::Vector2f getOrigin() const;
 	void setOrigin(sf::Vector2f origin);
 
+	void resizeArray();
+
 	sf::FloatRect getLocalBounds();
-	sf::FloatRect getGlobaBounds();
+	sf::FloatRect getGlobalBounds();
+
+	sf::Vector2f getTextureSize() const;
 
 	void updateEntity(float dt, sf::Vector2f window_size);
-	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+	void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 };
