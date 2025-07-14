@@ -32,7 +32,10 @@ public:
 	float getFrameTimerMax() const;
 	void setFrameTimerMax(float frame_time);
 
+	void changeAnimation(unsigned int animation_number);
+
 	sf::Vector2i getTexCoord() const;
+	void setTexCoord(sf::Vector2i coord);
 
 	sf::Vector2u getFrameSize() const;
 };
