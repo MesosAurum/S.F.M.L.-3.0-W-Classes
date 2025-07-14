@@ -4,7 +4,6 @@ void Physics::initVariables() {
 
 	gravity = { 0.0f, 9.80665f };
 	mass = 1.0f;
-	position = { 0.0f,0.0f };
 	velocity = { 0.0f,0.0f };
 	force = { 0.0f,0.0f };
 	angVelocity = 0.0f;
@@ -13,7 +12,7 @@ void Physics::initVariables() {
 	friction = 1.0f;
 	angFriction = 1.0f;
 	radii = { 1.0f,1.0f };
-	momentIntertia = 0.166667f;
+	momentInertia = 0.166667f;
 	hasGravity = false;
 	looping = false;
 }
@@ -21,19 +20,10 @@ Physics::Physics() {
 
 	initVariables();
 }
-Physics::~Physics() {
-}
+Physics::~Physics() {}
 void Physics::setMass(float mass) {
 
 	this->mass = mass;
-}
-sf::Vector2f Physics::getPosition() const {
-
-	return position;
-}
-void Physics::setPosition(sf::Vector2f position) {
-
-	this->position = position;
 }
 void Physics::setVelocity(sf::Vector2f velocity) {
 
@@ -42,18 +32,6 @@ void Physics::setVelocity(sf::Vector2f velocity) {
 void Physics::addForce(sf::Vector2f force) {
 
 	this->force += force;
-}
-float Physics::getRotation() const {
-
-	return rotation;
-}
-void Physics::setRotation(float theta) {
-
-	rotation = theta;
-}
-void Physics::addRotation(float theta) {
-
-	rotation += theta;
 }
 float Physics::getAngVelocity() const {
 
@@ -67,9 +45,9 @@ void Physics::addTorque(float torque) {
 
 	this->torque += torque;
 }
-void Physics::setMomentOfIntertia(sf::Vector2f size) {
+void Physics::setMomentOfInertia(sf::Vector2f size) {
 
-	momentIntertia = mass * (size.x * size.x + size.y * size.y) / 12.0f;
+	momentInertia = mass * (size.x * size.x + size.y * size.y) / 12.0f;
 }
 sf::Vector2f Physics::getRadii() const {
 
@@ -81,11 +59,11 @@ void Physics::setRadii(sf::Vector2f radii) {
 }
 void Physics::setFriction(float friction) {
 
-	this->friction = abs(1.0 - friction);
+	this->friction = abs(1.0f - friction);
 }
 void Physics::setAngFriction(float angular_friction) {
 
-	angFriction = abs(1.0 - angular_friction);
+	angFriction = abs(1.0f - angular_friction);
 }
 void Physics::setHasGravity(bool has_gravity) {
 
@@ -145,12 +123,12 @@ void Physics::update(float dt, sf::Vector2f window_size) {
 	if(abs(velocity.x) > smallNum || abs(velocity.y) > smallNum) {
 
 		velocity *= friction;
-		setPosition(getPosition() + velocity * dt);
+		move(velocity * dt);
 	}
 	if(abs(torque) > smallNum){
 
 		torque *= angFriction;
-		angAcceleration = (torque / momentIntertia);
+		angAcceleration = (torque / momentInertia);
 	}
 	if(abs(angAcceleration) > smallNum) {
 
@@ -160,6 +138,6 @@ void Physics::update(float dt, sf::Vector2f window_size) {
 	if(abs(angVelocity) > smallNum) {
 
 		angVelocity *= angFriction;
-		setRotation(getRotation() + angVelocity * dt);
+		rotate(sf::radians(angVelocity) * dt);
 	}
 }
