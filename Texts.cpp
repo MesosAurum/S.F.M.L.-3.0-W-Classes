@@ -20,8 +20,7 @@ Texts::~Texts() {
 	delete fonts;
 }
 void Texts::streamText(std::string str, float var) {
-
-	//Time: 1.2345
+	
 	std::stringstream sStream;
 	sStream << str << var;
 
