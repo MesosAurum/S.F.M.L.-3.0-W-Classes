@@ -3,9 +3,9 @@
 void Pellets::outOfBounds(unsigned int index, sf::Vector2f window_size) {
 
 	if((pellets.at(index)->getPosition().x < 0.0f) ||
-	(pellets.at(index)->getPosition().x >= window_size.x) ||
-	(pellets.at(index)->getPosition().y < 0.0f) || 
-	(pellets.at(index)->getPosition().y >= window_size.y)) {
+		(pellets.at(index)->getPosition().x >= window_size.x) ||
+		(pellets.at(index)->getPosition().y < 0.0f) || 
+		(pellets.at(index)->getPosition().y >= window_size.y)) {
 
 		delete pellets.at(index);
 		pellets.erase(pellets.begin() + index);
@@ -40,9 +40,9 @@ void Pellets::firePellet(float angle, sf::Vector2f position) {
 
 		unsigned int index = pellets.size() - 1;
 		sf::Vector2f direction = { cos(angle), sin(angle) };
-		pellets.at(index)->setRotation(angle);
+		pellets.at(index)->setRotation(sf::radians(angle));
 		pellets.at(index)->setVelocity(baseVelocity * direction);
-		pellets.at(index)->setOrigin(pellets.at(index)->getEntitySize() / 2.0f);
+		pellets.at(index)->setOrigin(pellets.at(index)->getTextureSize() / 2.0f);
 		pellets.at(index)->setPosition(position);
 
 		pelletTimer = pelletTimerMax;
@@ -60,10 +60,7 @@ void Pellets::update(float dt, sf::Vector2f window_size) {
 		pellets.at(i)->updateEntity(dt, window_size);
 		pellets.at(i)->animate(dt);
 
-		if(pellets.at(i) != NULL) {
-
-			outOfBounds(i, window_size);
-		}
+		outOfBounds(i, window_size);
 	}
 }
 void Pellets::render(sf::RenderWindow &window) {
