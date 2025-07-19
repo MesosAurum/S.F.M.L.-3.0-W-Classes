@@ -6,7 +6,7 @@ void Ship::initVariables() {
 	this->setAngFriction(0.125f);
 	this->setHasLooping(true);
 	this->setFrameTimerMax(0.0f);
-	this->setOrigin(this->getEntitySize() / 2.0f);
+	this->setOrigin(this->getTextureSize() / 2.0f);
 
 	thrustAmount = 12.0f;
 	turnAmount = 360.0f;
@@ -22,7 +22,7 @@ void Ship::moveShip(float dt) {
 		float torque = turnAmount * (dPressed - aPressed);
 		this->addTorque(torque);
 
-		float r = this->getRotation() - halfPi;
+		float r = this->getRotation().asRadians() - halfPi;
 		sf::Vector2f dir = { cos(r), sin(r) };
 		dir *= float(wPressed);
 		this->addForce(dir * thrustAmount);
