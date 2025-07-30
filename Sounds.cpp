@@ -18,7 +18,7 @@ sf::SoundBuffer *Sounds::initBuffer(std::string address) {
 	soundBuffer = new sf::SoundBuffer();
 	if(!soundBuffer->loadFromFile(address)) {
 
-		std::cerr << "SOUNDS::INITBUFFER::ERROR COULD NOT LOAD FROOM FILE!!!" << address << std::endl;
+		std::cerr << "SOUNDS::INITBUFFER::ERROR COULD NOT LOAD FROM FILE!!!" << address << std::endl;
 	}
 	return soundBuffer;
 }
