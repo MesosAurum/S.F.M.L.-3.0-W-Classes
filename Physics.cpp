@@ -86,7 +86,7 @@ void Physics::loop(sf::Vector2f window_size) {
 	}
 	if(nextPos.x > cx) {
 
-		nextPos.x - diameter.x;
+		nextPos.x = -diameter.x;
 	}
 	if(nextPos.y < -diameter.y) {
 
